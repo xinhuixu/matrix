@@ -43,6 +43,7 @@ def new_matrix(rows, cols):
             m[c].append( 0 )
     return m
 
+'''
 #TEST
 M = new_matrix(4, 4)
 #print_matrix(M)
@@ -53,7 +54,7 @@ print_matrix(M)
 N = new_matrix(4, 4)
 print "N"
 print_matrix(N)
-'''
+
 N = matrix_mult(M, N)
 print "NxM"
 print_matrix(N)
