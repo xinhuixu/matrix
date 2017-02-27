@@ -16,23 +16,38 @@ def ident( matrix ):
     pass
 
 def scalar_mult( matrix, s ):
-    ret = new_matrix(4, len(matrix[0])) #4xN
     for r in range(len(matrix)):
         for c in range(len(matrix[r])):
-            ret[r][c] = matrix[r][c] * s 
-    return ret
+            matrix[r][c] = matrix[r][c] * s 
 
+def scalar_add( matrix, s ):
+    for r in range(len(matrix)):
+        for c in range(len(matrix[r])):
+            matrix[r][c] = matrix[r][c] + s 
+
+def copy( src ):
+    new = new_matrix(4, len(src[0]))
+    for r in range(4):
+        for c in range(len(src[0])):
+            new[r][c] = src[r][c]
+    return new
 
 #m1 * m2 -> m2
 #we will always have a (4x4)(4xN) = (4xN) matrix...
+#NEED TO MODIFY M2
 def matrix_mult( m1, m2 ):
-    ret = new_matrix(4, len(m2[0]))
-    for r in range(len(m2)):
-        cell = 0        
-        for c in range(len(m2[r])):
-            cell += m1[r][c] * m2[c][r]
-            ret[r][c] = cell
-    return ret
+    len_m2c = len(m2[0])
+    m2temp = copy( m2 )
+    for r in range(4):
+        for c in range(len_m2c):
+            cell = 0
+            for c1 in range(4):
+                
+                cell += m1[r][c1] * m2temp[c1][c]
+                #print "INSIDE cell: ", cell
+            #print "cell: ", cell
+            m2[r][c] = cell
+        
 
 #default rows = 4        
 def new_matrix(rows, cols):
@@ -43,18 +58,4 @@ def new_matrix(rows, cols):
             m[c].append( 0 )
     return m
 
-#TEST
-M = new_matrix(4, 4)
-#print_matrix(M)
-M = scalar_mult(M,5)
-print "M"
-print_matrix(M)
 
-N = new_matrix(4, 4)
-print "N"
-print_matrix(N)
-'''
-N = matrix_mult(M, N)
-print "NxM"
-print_matrix(N)
-'''
