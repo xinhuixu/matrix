@@ -12,15 +12,30 @@ def draw_lines( matrix, screen, color ):
         draw_line(x0, y0, x1, y1, screen, color) 
         c += 1
 
+def find_col_pos( matrix ):
+    for c in range(len(matrix[0])):
+        if matrix[3][c] != 1:
+            return c
+    return len(matrix[0]) 
+
 def add_edge( matrix, x0, y0, z0, x1, y1, z1 ):
+        
     add_point(matrix, x0, y0, z0)
     add_point(matrix, x1, y1, z1)
 
 def add_point( matrix, x, y, z=0 ):
-    matrix[0].append(x)
-    matrix[1].append(y)
-    matrix[2].append(z)
-    matrix[3].append(1.0)
+
+    c = find_col_pos(matrix)
+    if c < 4:
+        matrix[0][c] = x
+        matrix[1][c] = y
+        matrix[2][c] = z
+        matrix[3][c] = 1.0
+    else:
+        matrix[0].append(x)
+        matrix[1].append(y)
+        matrix[2].append(z)
+        matrix[3].append(1.0)
 
 
 def draw_line( x0, y0, x1, y1, screen, color ):

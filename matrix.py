@@ -12,7 +12,8 @@ def print_matrix( matrix ):
     print mat
 
 def ident( matrix ):
-    pass
+    for r in range(len(matrix)):
+        matrix[r][r] = 1
 
 def scalar_mult( matrix, s ):
     for r in range(len(matrix)):
@@ -26,8 +27,6 @@ def scalar_add( matrix, s ):
 
 def copy( src ):
     new = new_matrix(4, len(src[0]))
-    print "copy: new"
-    print_matrix(new);
     for r in range(4):
         for c in range(len(src[0])):
             new[r][c] = src[r][c]
