@@ -29,9 +29,14 @@ matrix_mult(M, N)
 print "MxN"
 print_matrix(N)
 
-add_edge(N, 100, 100, 0, 200, 100, 0)
+add_edge(N, 10, 50, 0, 20, 60, 0)
 print "add edge N"
 print_matrix(N)
+
+matrix_mult(M, N)
+print "MxN"
+print_matrix(N)
+
 draw_lines( N, screen, color )
 display(screen)
 

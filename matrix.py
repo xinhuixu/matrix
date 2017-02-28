@@ -1,4 +1,3 @@
-from __future__ import division
 import math
 
 
@@ -27,6 +26,8 @@ def scalar_add( matrix, s ):
 
 def copy( src ):
     new = new_matrix(4, len(src[0]))
+    print "copy: new"
+    print_matrix(new);
     for r in range(4):
         for c in range(len(src[0])):
             new[r][c] = src[r][c]
@@ -46,16 +47,16 @@ def matrix_mult( m1, m2 ):
                 cell += m1[r][c1] * m2temp[c1][c]
                 #print "INSIDE cell: ", cell
             #print "cell: ", cell
-            m2[r][c] = cell
+            m2[r][c] = int(cell)
         
 
 #default rows = 4        
 def new_matrix(rows, cols):
     m = []
-    for c in range( cols ):
+    for r in range( rows ):
         m.append( [] )
-        for r in range( rows ):
-            m[c].append( 0 )
+        for c in range( cols ):
+            m[r].append( 0 )
     return m
 
 
